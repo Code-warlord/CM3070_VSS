@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\test\VSS_python_cpp_wrapper\py_subsense_module\subsense_python_wrapper\test\test_BackgroundSubtractorSubsensePythonWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\test\VSS_python_cpp_wrapper\py_subsense_module\subsense_python_wrapper\test\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{947F404A-5A8D-3665-9EEE-EEEDBD255496}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

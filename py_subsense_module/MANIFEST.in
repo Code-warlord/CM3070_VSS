@@ -1,0 +1,4 @@
+include external/cpp/subsense_by_Pierre_Luc_St_Charles_et_al/*.h
+include external/cpp/subsense_by_Pierre_Luc_St_Charles_et_al/*.i
+include subsense_python_wrapper/*.h
+include pysubsense/*.dll

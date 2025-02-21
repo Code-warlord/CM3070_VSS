@@ -1,0 +1,7 @@
+Metadata-Version: 2.2
+Name: pysubsense
+Version: 0.1.0
+Summary: Subsense Python Wrapper using pybind11
+Author: Victor Ogbogolo
+Requires-Python: >=3.12
+Dynamic: requires-python

@@ -1,0 +1,10 @@
+/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/CMakeFiles/test_subsense.dir
+/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/CMakeFiles/runTests.dir
+/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/CMakeFiles/test.dir
+/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/CMakeFiles/edit_cache.dir
+/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/CMakeFiles/rebuild_cache.dir
+/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/external/googletest/CMakeFiles/gtest.dir
+/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/external/googletest/CMakeFiles/gtest_main.dir
+/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/external/googletest/CMakeFiles/test.dir
+/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/external/googletest/CMakeFiles/edit_cache.dir
+/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/external/googletest/CMakeFiles/rebuild_cache.dir

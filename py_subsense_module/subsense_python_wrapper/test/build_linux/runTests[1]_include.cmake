@@ -1,0 +1,5 @@
+if(EXISTS "/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/runTests[1]_tests.cmake")
+  include("/home/admin/reliant_watcher/py_subsense_module/subsense_python_wrapper/test/build_linux/runTests[1]_tests.cmake")
+else()
+  add_test(runTests_NOT_BUILT runTests_NOT_BUILT)
+endif()

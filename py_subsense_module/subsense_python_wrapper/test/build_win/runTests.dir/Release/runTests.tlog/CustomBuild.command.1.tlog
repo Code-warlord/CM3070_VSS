@@ -1,0 +1,10 @@
+^C:\TEST\VSS_PYTHON_CPP_WRAPPER\PY_SUBSENSE_MODULE\SUBSENSE_PYTHON_WRAPPER\TEST\CMAKELISTS.TXT
+setlocal
+C:\Portable_Software\cmake-3.31.1-windows-x86_64\bin\cmake.exe -SC:/test/VSS_python_cpp_wrapper/py_subsense_module/subsense_python_wrapper/test -BC:/test/VSS_python_cpp_wrapper/py_subsense_module/subsense_python_wrapper/test/build_win --check-stamp-file C:/test/VSS_python_cpp_wrapper/py_subsense_module/subsense_python_wrapper/test/build_win/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
