@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Define document character encoding, viewport settings, and SEO meta tags -->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="The remote monitoring user interface dashboard for reliant watcher" />
+		<meta name="author" content="Ogbogolo, Victor" />
+		<meta name="keywords" content="security, video surveillance" />
+		
+		<!-- Page title displayed in the browser tab -->
+		<title>Reliant Watcher</title>
+		
+		<!-- Favicon: small icon displayed in browser tab and bookmarks -->
+		<link type="image/png" sizes="96x96" rel="icon" href="./asset/favicon/eye.png" />
+		
+		<!-- Link to external CSS libraries and custom stylesheets -->
+		<link rel="stylesheet" href="external/css/choices.min.css" />
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/index.css" />
+	</head>
+
+	<body>
+		<!-- Header section containing logo, navigation and responsive hamburger menu -->
+		<header class="header">
+			<!-- Container for header images and overlay -->
+			<div class="image_container">
+				<!-- Multiple background images with individual IDs for styling purposes -->
+				<div class="image" id="img1"></div>
+				<div class="image" id="img2"></div>
+				<div class="image" id="img3"></div>
+				<div class="image" id="img4"></div>
+				<div class="image" id="img5"></div>
+
+				<!-- Semi-transparent overlay for enhancing text readability -->
+				<div class="image_cont_shade"></div>
+
+				<!-- Container for header text including the main title and subtitle -->
+				<div class="header_text">
+					<h1 class="sub_text h_name"><strong>Reliant Watcher UI</strong></h1>
+					<p class="sub_text">The smart video surveillance system UI dashboard</p>
+				</div>
+
+				<!-- Responsive hamburger menu for mobile navigation -->
+				<div
+					class="hamburger"
+					role="button"
+					aria-expanded="false"
+					aria-controls="nav_menu"
+					aria-label="Toggle navigation menu"
+					tabindex="0"
+				>
+					<!-- Three spans visually represent the hamburger icon -->
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+
+			<!-- Navigation bar for quick access to site sections -->
+			<div class="header_nav">
+				<nav id="nav_menu" aria-hidden="false">
+					<!-- Navigation link for Livestream with an embedded SVG icon -->
+					<a href="#" onclick="show_page('livestream');return false;">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							fill="currentColor"
+							class="bi bi-camera-reels"
+							viewBox="0 0 16 16"
+						>
+							<path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0M1 3a2 2 0 1 0 4 0 2 2 0 0 0-4 0" />
+							<path
+								d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm6 8.73V7.27l-3.5 1.555v4.35zM1 8v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1"
+							/>
+							<path d="M9 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6M7 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+						</svg>
+						Livestream
+					</a>
+					<!-- Navigation link for Recent Intrusion scenes -->
+					<a href="#" onclick="show_page('recent_intrusion');return false;">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							fill="currentColor"
+							class="bi bi-eye"
+							viewBox="0 0 16 16"
+						>
+							<path
+								d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"
+							/>
+							<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+						</svg>
+						Recent Intrusion
+					</a>
+					<!-- Navigation link for searching intrusion scenes -->
+					<a href="#" onclick="show_page('search_intrusion');return false;">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							fill="currentColor"
+							class="bi bi-search"
+							viewBox="0 0 16 16"
+						>
+							<path
+								d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+							/>
+						</svg>
+						Search
+					</a>
+					<!-- Additional navigation links can be added here -->
+				</nav>
+			</div>
+		</header>
+
+		<!-- Main content container -->
+		<div class="container">
+			<main>
+				<!-- Section for Livestream page -->
+				<section id="livestream" class="page">
+					<div>
+						<h1>Watch Livestream from Reliant Watcher</h1>
+						<div class="page_body">
+							<!-- Video player for livestreaming content -->
+							<div class="video_player">
+								<video id="livestream_video" controls autoplay muted playsinline></video>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Section for viewing recent intrusion videos -->
+				<section id="recent_intrusion" class="page">
+					<div>
+						<h1 class="page_title">Playback Latest Intrusion Scenes</h1>
+						<div class="page_body">
+							<div class="video_player">
+								<!-- Title area to display the current video's name -->
+								<h3 id="recent_intrusion_video_player_content_title"></h3>
+								<!-- Video player element for playback -->
+								<video id="recent_intrusion_video_player" controls autoplay muted playsinline></video>
+							</div>
+							<div class="video_list_container">
+								<!-- Refresh list button with an icon -->
+								<div class="event_badge">
+									<div id="refresh_list" onclick="refresh_list();">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="16"
+											height="16"
+											fill="currentColor"
+											class="bi bi-arrow-clockwise"
+											viewBox="0 0 16 16"
+										>
+											<path
+												fill-rule="evenodd"
+												d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"
+											/>
+											<path
+												d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"
+											/>
+										</svg>
+										<div>Refresh List</div>
+									</div>
+								</div>
+
+								<!-- Section header showing how many intrusion scenes to display -->
+								<h2>
+									Latest <span><input type="number" id="num_intrusion" value="3" /></span> intrusion scenes
+								</h2>
+								<!-- Unordered list that will be dynamically populated with video items -->
+								<ul class="video_list" id="recent_intrusion_list">
+									<!-- Intrusion Video List will be populated here -->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Section for searching intrusion videos -->
+				<section id="search_intrusion" class="page">
+					<div>
+						<h1 class="page_title">Search for Intrusion Scenes</h1>
+						<!-- Search form for intrusion videos -->
+						<form action="" id="search_intrusion_form">
+							<div>
+								<!-- Multi-select dropdown for object search (optional) -->
+								<label for="objects">multiple objects search is possible (optional)</label>
+								<select id="multi_object_selection" name="objects" multiple></select>
+							</div>
+							<div>
+								<!-- Input fields for specifying a date range (optional) -->
+								<div class="datetime_field">
+									<input type="datetime-local" name="start_date" id="start_date" />
+									<label for="start_date">Start Date (optional)</label>
+								</div>
+								-
+								<div class="datetime_field">
+									<input type="datetime-local" name="end_date" id="end_date" />
+									<label for="end_date">End Date (optional)</label>
+								</div>
+							</div>
+							<!-- Container to display any error messages during search -->
+							<div id="error_message"></div>
+							<!-- Submit button for triggering the search -->
+							<input type="submit" id="search_button" value="Search" />
+						</form>
+						<div class="page_body">
+							<div class="video_player">
+								<!-- Title area for the video player that shows search results -->
+								<h3 id="searched_intrusion_video_player_content_title"></h3>
+								<!-- Video player element for playing search result videos -->
+								<video id="searched_intrusion_video_player" controls autoplay playsinline></video>
+							</div>
+							<div class="video_list_container">
+								<!-- Header for the search results list -->
+								<h2>Search Results</h2>
+								<!-- Unordered list that will be populated with search result videos -->
+								<ul class="video_list" id="search_intrusion_list">
+									<!-- Intrusion Video List will be populated here -->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<!-- ==============  Footer section ======================= -->
+		<footer>
+			<!-- Container for theme settings and color options -->
+			<div class="theme">
+				<!-- Listbox containing theme color options for text and background -->
+				<div class="theme_colors" role="listbox" aria-label="theme colors for text and background">
+					<!-- Theme Option 1: Default with white text on black background -->
+					<div
+						role="option"
+						aria-selected="true"
+						style="color: rgb(255, 255, 255); background-color: rgb(0, 0, 0)"
+						id="active"
+						tabindex="0"
+					>
+						AaZz
+					</div>
+					<!-- Theme Option 2: Light green text on dark red background -->
+					<div role="option" style="color: rgb(193, 255, 186); background-color: rgb(82, 1, 0)" tabindex="0">
+						AaZz
+					</div>
+					<!-- Theme Option 3: Light orange text on dark blue background -->
+					<div role="option" style="color: rgb(255, 214, 161); background-color: rgb(0, 1, 82)" tabindex="0">
+						AaZz
+					</div>
+					<!-- Theme Option 4: Black text on white background -->
+					<div role="option" style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255)" tabindex="0">
+						AaZz
+					</div>
+					<!-- Theme Option 5: Dark blue text on light beige background -->
+					<div role="option" style="color: rgb(0, 1, 82); background-color: rgb(244, 226, 198)" tabindex="0">
+						AaZz
+					</div>
+					<!-- Theme Option 6: Dark red text on light green background -->
+					<div role="option" style="color: rgb(82, 1, 0); background-color: rgb(240, 255, 238)" tabindex="0">
+						AaZz
+					</div>
+				</div>
+				<!-- Label prompting the user to change the theme -->
+				<div id="theme_label">Change Theme</div>
+			</div>
+
+			<!-- Footer information or descriptive text about the interface -->
+			<div id="footer_info">
+				The remote monitoring interface dashboard
+			</div>
+		</footer>
+
+		<!-- External JavaScript libraries and custom scripts -->
+		<!-- tinycolor.js for color manipulation -->
+		<script src="./external/js/tinycolor.js"></script>
+		<!-- Choices.js for enhancing multi-select dropdowns -->
+		<script src="./external/js/choices.min.js"></script>
+		<!-- Main site-wide functionality -->
+		<script src="./js/main.js"></script>
+		<!-- JavaScript for managing video playback and downloads -->
+		<script src="./js/manage_videos.js"></script>
+		<!-- JavaScript for handling ICE server authentication in WebRTC -->
+		<script src="./js/ice_server_auth.js"></script>
+		<!-- Page-specific JavaScript for WebRTC connection management -->
+		<script src="./js/manage_webrtc_conn.js"></script>
+	</body>
+</html>

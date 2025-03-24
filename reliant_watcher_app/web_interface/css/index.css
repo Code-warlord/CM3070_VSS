@@ -1,0 +1,421 @@
+/* 
+  The following CSS variables are declared in the :root selector in the main.css file:
+  1. --content_bg_color: Background color used for content sections.
+  2. --bg_color: General background color used across different elements.
+  3. --text_color: Primary text color used throughout the website.
+*/
+
+/* Main container styling */
+main {
+	/* Set the container width to 90% of the viewport */
+	width: 90%;
+	/* Use flexbox for layout */
+	display: flex;
+	/* Arrange child elements vertically */
+	flex-direction: column;
+}
+
+/* Responsive design for small screens */
+@media (max-width: 767px) {
+	main {
+		/* Increase main container width slightly on smaller devices */
+		width: 95%;
+	}
+}
+
+/* Responsive design for medium screens */
+@media (min-width: 768px) and (max-width: 1023px) {
+	main {
+		/* Adjust main container width for medium devices */
+		width: 85%;
+	}
+}
+
+/* Typography for headings */
+h1 {
+	/* Increase h1 font size for prominence */
+	font-size: 1.7em;
+}
+h2 {
+	/* Slightly smaller font size for h2 headings */
+	font-size: 1.3em;
+}
+h3 {
+	/* Even smaller font size for h3 headings */
+	font-size: 1.1em;
+}
+
+/* Base styling for pages */
+/* All pages are hidden by default */
+.page {
+	/* Hide the page element */
+	display: none;
+	/* Set background color using the --bg_color variable */
+	background-color: var(--bg_color);
+	/* Ensure the minimum height covers the viewport minus header and footer */
+	min-height: calc(100vh - var(--header_height) - var(--footer_height));
+}
+/* Display the active page */
+.page.active {
+	display: block;
+}
+
+/* Container inside each page to center content */
+.page > div {
+	display: flex;
+	/* Arrange children vertically */
+	flex-direction: column;
+	/* Center items horizontally */
+	align-items: center;
+	/* Center text inside the container */
+	text-align: center;
+	/* Center items vertically */
+	justify-content: center;
+	/* Set background color using the --bg_color variable */
+	background-color: var(--bg_color);
+	/* Maintain minimum height based on viewport minus header and footer */
+	min-height: calc(100vh - var(--header_height) - var(--footer_height));
+}
+
+/* Styling for the search intrusion form */
+#search_intrusion_form {
+	/* Add padding and margin relative to viewport size */
+	padding: min(20px, 1vw);
+	margin-bottom: min(20px, 1vw);
+	/* Set fixed width for larger screens */
+	width: 60vw;
+	/* Border color from primary text color */
+	border: 2px solid var(--text_color);
+	/* Background color for the form content */
+	background: var(--content_bg_color);
+}
+
+/* Responsive adjustment for the search form on smaller screens */
+@media screen and (max-width: 1024px) {
+	#search_intrusion_form {
+		/* Make the form full-width on screens smaller than 1024px */
+		width: 100%;
+	}
+}
+
+/* Layout styling for page body */
+.page_body {
+	width: 100%;
+	/* Use flexbox to arrange children */
+	display: flex;
+	/* Allow items to wrap to next line if needed */
+	flex-wrap: wrap;
+}
+
+/* Styling for the video player container */
+.video_player {
+	/* Occupy 60% of the available space */
+	flex: 60%;
+	/* Use flexbox to arrange child elements vertically and center them */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* Padding for video player title */
+.video_player > h3 {
+	padding: 10px;
+	margin: 5px;
+}
+
+/* Video element styling */
+video {
+	/* Set video width to fill container */
+	width: 100%;
+	/* Maintain a 640/480 aspect ratio */
+	aspect-ratio: 640 / 480;
+	/* Restrict maximum dimensions */
+	max-width: 640px;
+	max-height: min(480px, 65vh);
+	/* Background color behind the video */
+	background-color: var(--content_bg_color);
+	/* Padding relative to viewport width */
+	padding: min(20px, 1vw);
+}
+
+/* Styling for container holding the video list */
+.video_list_container {
+	/* Occupy remaining 40% of space */
+	flex: 40%;
+	/* Margin at the top to create separation */
+	margin-top: 10px;
+	/* Background color from content background variable */
+	background-color: var(--content_bg_color);
+}
+
+/* Header style inside the video list container */
+.video_list_container > h2 {
+	/* Padding at the bottom for spacing */
+	padding-bottom: 10px;
+	/* Underline the header using a border matching the background color */
+	border-bottom: 4px solid var(--bg_color);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1279px) {
+	.video_player {
+		/* Make video player take full width on smaller screens */
+		flex: 100%;
+	}
+	.video_list_container {
+		/* Make video list container take full width on smaller screens */
+		flex: 100%;
+	}
+}
+
+/* Styling for the number input controlling intrusion scenes */
+#num_intrusion {
+	/* Set background from navigation background variable */
+	background: var(--nav_bg_color);
+	/* Inherit font size from parent */
+	font-size: inherit;
+	/* Border matching primary text color */
+	border: 1px solid var(--text_color);
+	/* Padding for comfortable click/tap area */
+	padding: 5px;
+	/* Inherit text color from parent */
+	color: inherit; 
+	/* Remove outline for a cleaner look */
+	outline: none;
+	/* Bold font for better readability */
+	font-weight: bolder;
+	/* Constrain maximum width */
+	max-width: 60px;
+	/* Center align the text */
+	text-align: center;
+}
+
+/* Interactive focus and hover states for various elements */
+#num_intrusion:focus,
+#num_intrusion:hover,
+form input:focus,
+form input:hover,
+.choices__inner:focus,
+.choices__inner:hover,
+.video_controls > div:focus,
+.video_controls > div:hover,
+#refresh_list:focus,
+#refresh_list:hover {
+	/* Change background on interaction */
+	background-color: var(--bg_color);
+	/* Add a subtle box shadow for visual feedback */
+	box-shadow: 0px 0px 2px 3px var(--text_color);
+}
+
+/* Styling for the video list */
+.video_list {
+	/* Remove default list styling */
+	list-style-type: none;
+	/* Margin relative to viewport width */
+	margin: min(20px, 1vw);
+	/* Remove default padding */
+	padding: 0px;
+	/* Set maximum height with vertical scrolling if content exceeds */
+	max-height: 380px;
+	overflow-y: auto;
+}
+
+/* Customize scrollbar for WebKit browsers */
+.video_list::-webkit-scrollbar {
+	width: 8px;
+}
+
+/* Styling for the scrollbar thumb */
+.video_list::-webkit-scrollbar-thumb {
+	/* Set thumb background color from navigation background */
+	background: var(--nav_bg_color);
+	/* Rounded corners for the thumb */
+	border-radius: 4px;
+}
+
+/* Margin for list items */
+li {
+	margin: 16px 0px;
+}
+
+/* Styling for video info container in list items */
+.video_info {
+	/* Use flexbox layout */
+	display: flex;
+	/* Allow items to wrap if necessary */
+	flex-wrap: wrap;
+	/* Center align items vertically and text horizontally */
+	align-items: center;
+	text-align: center;
+	/* Padding around the info block */
+	padding: 8px;
+	/* Top and bottom borders using text color */
+	border-top: 1px solid var(--text_color);
+	border-bottom: 1px solid var(--text_color);
+	/* Background color for controls area from nav background */
+	background-color: var(--nav_bg_color);
+}
+
+/* Styling for the video name element */
+.video_name {
+	/* Occupies 70% of the flex container */
+	flex: 70%;
+	/* Padding around the video name */
+	padding: 10px;
+}
+
+/* Container for video control buttons */
+.video_controls {
+	/* Set display type to block */
+	display: block;
+	/* Occupy 20% of the container */
+	flex: 20%;
+	/* Maximum width constraint */
+	max-width: 120px;
+}
+
+/* Styling for individual control buttons */
+.video_controls > div {
+	/* Use inline-flex for alignment and layout */
+	display: inline-flex;
+	/* Padding inside each button */
+	padding: 10px;
+	/* Border styling using text color */
+	border: 2px solid var(--text_color);
+}
+
+/* Float the first control element to the left */
+.video_controls > :first-child {
+	float: left;
+}
+/* Float the last control element to the right */
+.video_controls > :last-child {
+	float: right;
+}
+
+/* Styling for video description container */
+.video_description {
+	/* Add a border at the bottom using text color */
+	border-bottom: 1px solid var(--text_color);
+}
+/* Padding for the last element in video description */
+.video_description > :last-child {
+	padding: 5px;
+}
+
+/* Styling for the refresh list button */
+#refresh_list {
+	/* Use flexbox to arrange content horizontally */
+	display: flex;
+	flex-direction: row;
+	/* Center align content both horizontally and vertically */
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	/* Padding for clickable area */
+	padding: 5px;
+}
+
+/* Styling for the event badge, a label indicator */
+.event_badge {
+	/* Use flow-root to establish a new block formatting context */
+	display: flow-root;
+	margin: 0px;
+	padding: 0px;
+}
+/* Styling for inner elements of the event badge */
+.event_badge > div {
+	/* Smaller font size for badge text */
+	font-size: 0.8em;
+	/* Italicize text for stylistic effect */
+	font-style: italic;
+	/* Border to frame the badge */
+	border: 4px solid var(--nav_bg_color);
+	/* Padding inside the badge */
+	padding: 4px;
+	/* Display inline for compact layout */
+	display: inline;
+	/* Float to the left */
+	float: left;
+	/* Background and text colors reversed for contrast */
+	background: var(--text_color);
+	color: var(--content_bg_color);
+}
+
+/* Apply uniform margin to all elements inside the search form */
+#search_intrusion_form * {
+	margin: 5px 0px;
+}
+
+/* Padding for datetime-local inputs */
+#search_intrusion_form input[type='datetime-local'] {
+	padding: 5px;
+}
+
+/* Styling for form labels */
+label {
+	/* Smaller, italicized font for labels */
+	font-size: 0.8em;
+	font-style: italic;
+}
+
+/* Styling for the submit button in the search form */
+#search_intrusion_form input[type='submit'] {
+	/* Fixed width for consistency */
+	width: 150px;
+	/* Padding for clickability */
+	padding: 5px;
+	/* Rounded corners */
+	border-radius: 10px;
+	/* Background from text color for contrast */
+	background-color: var(--text_color);
+	/* Text color from content background for contrast */
+	color: var(--content_bg_color);
+	/* Bold text for emphasis */
+	font-weight: bold;
+	/* Slightly larger font size */
+	font-size: 1.1em;
+}
+
+/* Styling for date/time field container */
+.datetime_field {
+	/* Use inline-flex to stack label and input vertically */
+	display: inline-flex;
+	flex-direction: column;
+}
+
+/* Styling for error message display */
+#error_message {
+	/* Center align error content */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* Margin for spacing */
+	margin: 5px;
+}
+/* Styling for SVG icons inside error messages */
+#error_message > svg {
+	/* Red color to indicate error */
+	color: red;
+	/* Margin to separate from text */
+	margin-right: 4px;
+	/* Light red background for visual emphasis */
+	background-color: rgb(237, 183, 183);
+}
+
+/* Styling for Choices.js multiple select items */
+.choices__list--multiple .choices__item {
+	/* Set background to content background color */
+	background-color: var(--content_bg_color);
+	/* Border with primary text color */
+	border: 1px solid var(--text_color);
+	/* Text color from primary text color */
+	color: var(--text_color);
+}
+
+/* Styling for dropdown choices */
+.choices__list--dropdown .choices__item,
+.choices__list[aria-expanded] .choices__item {
+	/* Set text color to black for better readability */
+	color: black;
+}

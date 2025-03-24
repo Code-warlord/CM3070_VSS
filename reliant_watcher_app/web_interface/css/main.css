@@ -1,0 +1,474 @@
+/* This entire code is my own work, written by me for web development (CM1040) coursework, 
+it is utilized here to beautify the UI. */
+
+:root {
+    /* 
+    Custom properties for layout dimensions, colors, and font size 
+    These variables allow for easy adjustments and consistency throughout the stylesheet.
+    */
+    --header_height: 80px; /* The height of the header */
+    --footer_height: max(8vh, 70px); /* The height of the footer, responsive to screen height */
+    --text_size: 16px; /* Base font size for the website */
+    --bg_color: #ffffff; /* Background color for the entire website */
+    --nav_bg_color: #ffffff; /* Background color for the navigation bar */
+    --nav_bg_color_transparent: #ffffff; /* Semi-transparent background for overlay effects */
+    --nav_bg_color_transparent_2: #ffffff; /* Another semi-transparent color for different overlay effects */
+    --content_bg_color: #ffffff; /* Background color for the content area */
+    --text_color: #ffffff; /* Primary text color */
+    font-size: var(--text_size); /* Set the root font size based on the defined variable */
+}
+
+* {
+    /* 
+    Apply box-sizing to all elements. 
+    This includes padding and border within the element's width and height, ensuring consistent element sizing.
+    */
+    box-sizing: border-box;
+}
+
+body,
+html {
+    /* 
+    Reset default margins and padding, set the base font, and define the background and text colors. 
+    This ensures a clean and consistent starting point for styling.
+    */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; /* Set a default sans-serif font for the site */
+    background-color: var(--bg_color); /* Apply the background color defined in :root */
+    color: var(--text_color); /* Apply the text color defined in :root */
+    font-size: 1rem; /* Set the base font size to 1 rem (relative to the root font size) */
+}
+
+.container {
+    /* 
+    Center the container element within its parent. 
+    Align items to the center horizontally and vertically. The margin adapts to the header and footer heights.
+    */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: var(--header_height) max(10px, 1%) var(--footer_height) max(10px, 1%);
+}
+
+@media (max-width: 767px) {
+    :root {
+        /* 
+        Adjust text size for smaller screens. 
+        This media query ensures readability on devices with a maximum width of 767px.
+        */
+        --text_size: 14px;
+    }
+    .container {
+        /* 
+        Adjust margins for smaller screens. 
+        Reduces the side margins to accommodate smaller viewports.
+        */
+        margin: var(--header_height) min(10px, 1%) var(--footer_height) min(10px, 1%);
+    }
+}
+
+
+/* Header ================================================================ */
+
+.header {
+    /* 
+    Style the header with a fixed position to stay at the top of the page. 
+    The z-index ensures it stays on top of other content. Background color is applied from the root variable.
+    */
+    display: flex;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: var(--header_height);
+    z-index: 3; /* Ensure the header appears above other elements */
+    background-color: var(--nav_bg_color); /* Apply the navigation background color */
+}
+
+@media (max-height: 450px) {
+    .header {
+        /* 
+        For shorter screens (e.g., some mobile devices), make the header static instead of fixed. 
+        This allows for better use of vertical space.
+        */
+        position: static;
+        height: var(--header_height); /* Keep the header height consistent */
+    }
+    .container {
+        /* 
+        Adjust container margins for shorter screens. 
+        Reduces the side margins to accommodate smaller vertical viewports.
+        */
+        margin: min(10px, 1%) min(10px, 1%) var(--footer_height) min(10px, 1%);
+    }
+}
+
+.image_container {
+    /* 
+    Container for images within the header. 
+    Set flexible width and height to ensure the images adapt to the header size.
+    */
+    display: flex;
+    width: 50%;
+    height: var(--header_height);
+    position: relative; /* Allows for positioning of overlay elements */
+    overflow: hidden; /* Hide overflow to ensure images don't extend beyond the container */
+    margin: 0px;
+    padding: 0px;
+}
+
+.image {
+    /* 
+    Set the properties for images within the header container. 
+    The images are set to cover the container and be centered within it.
+    */
+    flex: 1; /* Allow the image to grow and fill the container */
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the image within the container */
+}
+
+/* Background images for different header states */
+#img1 {
+    background-image: url('../asset/pics/1.png'); /* Set the background image for the first state */
+}
+#img2 {
+    background-image: url('../asset/pics/2.png'); /* Set the background image for the second state */
+}
+#img3 {
+    background-image: url('../asset/pics/3.png'); /* Set the background image for the third state */
+}
+#img4 {
+    background-image: url('../asset/pics/4.png'); /* Set the background image for the fourth state */
+}
+#img5 {
+    background-image: url('../asset/pics/5.png'); /* Set the background image for the fifth state */
+}
+
+.image_cont_shade {
+    /* 
+    Overlay shade for the image container. 
+    Adds a semi-transparent layer over images for a shading effect.
+    */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--nav_bg_color_transparent); /* Apply the semi-transparent color */
+}
+
+.header_text {
+    /* 
+    Style the text overlay within the header. 
+    The text is centered both horizontally and vertically within the header.
+    */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%; /* Center the text vertically */
+    left: 50%; /* Center the text horizontally */
+    transform: translate(-50%, -50%); /* Adjust for the center point of the text */
+    width: 100%;
+    color: var(--text_color); /* Apply the text color from the root variable */
+    text-align: center; /* Center-align the text */
+    margin: 0px;
+    padding: 0px;
+}
+
+.header_text > h1,
+.header_text > p {
+    /* 
+    Remove margin and padding for header text elements. 
+    Ensures the text is cleanly aligned within its container.
+    */
+    margin: 0px;
+    padding: 0px;
+}
+
+.header_text > h1 {
+    /* 
+    Style the main header text. 
+    A larger font size is used for emphasis.
+    */
+    font-size: 2.027rem;
+}
+
+.sub_text {
+    /* 
+    Style the sub-text under the main header. 
+    This includes a smaller font size, italic styling, and a background for contrast.
+    */
+    display: inline-block;
+    font-size: 0.79rem; /* Smaller font size relative to the main header */
+    font-style: italic; /* Italicize the sub-text */
+    padding: 2px;
+    background-color: var(--nav_bg_color_transparent_2); /* Apply the semi-transparent background color */
+}
+
+.h_name {
+    /* 
+    Styling for the highlighted name text in the header. 
+    This text is normal (not italicized) and adjusted to be more prominent.
+    */
+    font-style: normal; /* Remove italic styling */
+    font-size: 1em; /* Set a standard font size for the highlighted name */
+}
+
+.header_nav {
+    /* 
+    Navigation section within the header. 
+    This is a flexible container that aligns and centers the navigation items.
+    */
+    width: 50%; /* Navigation occupies half the header width */
+    background-color: var(--nav_bg_color); /* Apply the background color from the root variable */
+    display: flex;
+    justify-content: center; /* Center the navigation items horizontally */
+    align-items: center; /* Center the navigation items vertically */
+}
+
+nav {
+    /* 
+    Style for the navigation bar. 
+    Includes a gap between items for spacing and a higher z-index to stay above content.
+    */
+    display: flex;
+    gap: 20px; /* Space between navigation items */
+    z-index: 5; /* Ensure navigation appears above other elements */
+}
+
+nav a {
+    /* 
+    Style for navigation links. 
+    Includes color, font size, and text alignment.
+    */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text_color); /* Apply the text color from the root variable */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 1.1rem; /* Set a slightly larger font size for the links */
+}
+
+/* 
+  Styles for SVG icons within navigation links
+  - Set width and height to 1.1rem for consistent sizing
+  - Add margin-bottom to create space between icons
+*/
+nav a > svg {
+  width: 1.1rem; 
+  height: 1.1rem; 
+  margin-bottom: 2px; 
+}
+
+/* 
+  Improved focus styles for better accessibility
+  - Set background color to text color on hover and focus
+  - Set text color to navigation background color on hover and focus
+  - Add outline with offset to create a clear focus indicator
+  - Add border radius to smooth out the focus indicator
+*/
+nav > a:hover, nav > a:focus {
+  background-color: var(--text_color);
+  color: var(--nav_bg_color);
+  outline: 1px solid var(--text_color);
+  outline-offset: 1px;
+  border-radius: 3px;
+}
+
+/* 
+  Hamburger menu styles for smaller screens
+  - Hide by default and display as a column
+  - Set width and height to create a compact icon
+  - Position absolutely in the top right corner
+  - Set cursor to pointer for interactive feedback
+  - Set background color to transparent navigation background color
+  - Add padding for spacing
+*/
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 35px;
+  height: 25px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background-color: var(--nav_bg_color_transparent_2);
+  padding: 3px;
+}
+
+/* 
+  Styles for individual lines in the hamburger icon
+  - Set height to create a clear line
+  - Set background color to text color
+  - Add border radius to smooth out the lines
+*/
+.hamburger span {
+  height: 4px;
+  background: var(--text_color);
+  border-radius: 2px;
+}
+
+/* 
+  Media query for smaller screens (max-width: 1023px)
+  - Stack header content vertically
+  - Make image container full-width
+  - Adjust header text size and positioning
+  - Reduce sub-text font size
+  - Make navigation full-width
+  - Hide navigation and reformat it for smaller screens
+  - Display hamburger menu on smaller screens
+  - Show navigation when hamburger menu is active
+*/
+@media (max-width: 1023px) {
+  .header {
+    flex-direction: column;
+  }
+  .image_container {
+    width: 100%;
+  }
+  .header_text {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.8em;
+  }
+  .sub_text {
+    font-size: 0.4em;
+  }
+  .header_nav {
+    width: 100%;
+  }
+  nav {
+    display: none;
+    flex-direction: column;
+    background: var(--nav_bg_color);
+    position: absolute;
+    top: var(--header_height);
+    width: 100%;
+    text-align: center;
+  }
+  nav a {
+    padding: 10px 0;
+  }
+  .hamburger {
+    display: flex;
+    cursor: pointer;
+  }
+  nav.active {
+    display: flex;
+  }
+}
+
+
+/*==================== COMMON FOOTER CSS SECTION ==========================================*/
+
+footer {
+  /* Styles the footer element */
+  height: var(--footer_height); /* Sets the height of the footer to a custom variable */
+  width: 100vw; /* Makes the footer span the full width of the viewport */
+  position: fixed; /* Fixes the footer to the bottom of the page */
+  bottom: 0px; /* Positions the footer at the bottom of the page */
+  left: 0px; /* Positions the footer to the left of the page */
+  background-color: var(--nav_bg_color); /* Sets the background color of the footer to a custom variable */
+  z-index: 2; /* Sets the z-index of the footer to 2, ensuring it appears above other elements */
+}
+
+footer > .theme {
+  /* Styles the theme toggle section */
+  display: flex; /* Sets the display to flex to arrange elements horizontally */
+  width: max-content; /* Sets the width to the minimum necessary to fit its content */
+  height: max-content; /* Sets the height to the minimum necessary to fit its content */
+  padding: 10px; /* Adds padding around the theme toggle elements */
+  flex-direction: column; /* Stacks elements vertically */
+  align-items: center; /* Centers the elements horizontally */
+  position: fixed; /* Fixes the theme toggle section to the bottom right corner */
+  bottom: 25px; /* Positions the theme toggle section 25 pixels from the bottom */
+  right: 50px; /* Positions the theme toggle section 50 pixels from the right */
+}
+
+#theme_label {
+  /* Styles the label for the theme toggle */
+  position: absolute; /* Positions the label absolutely within the theme toggle section */
+  width: max-content; /* Sets the width to the minimum necessary to fit its content */
+  bottom: -20px; /* Positions the label 20 pixels above the theme toggle */
+  color: var(--text_color); /* Sets the text color of the label to a custom variable */
+  font-size: 0.79rem; /* Sets the font size of the label */
+  padding: 4px; /* Adds padding around the label text */
+}
+
+#footer_info {
+  /* Styles the footer information text */
+  position: absolute; /* Positions the footer information absolutely within the footer */
+  top: 50%; /* Positions the footer information vertically centered */
+  transform: translateY(-50%); /* Adjusts the vertical position of the footer information */
+  left: 10px; /* Sets left padding for the footer information */
+  right: 100px; /* Sets right padding for the footer information, avoiding overlap with the theme toggle */
+  color: var(--text_color); /* Sets the text color of the footer information to a custom variable */
+}
+
+@media (max-width: 767px) {
+  #footer_info {
+    /* Adjusts font size for footer information on smaller screens */
+    font-size: 0.889rem;
+  }
+}
+
+#footer_info > a {
+  /* Styles links within the footer information */
+  background-color: var(--text_color); /* Sets the background color of the links to a custom variable */
+  color: var(--content_bg_color); /* Sets the text color of the links to a custom variable */
+  border-radius: 3px; /* Rounds the corners of the links */
+  padding: 2px; /* Adds padding around the links */
+}
+
+#footer_info > a:hover {
+  /* Styles links on hover */
+  background-color: var(--bg_color); /* Sets the background color of the links on hover */
+  color: var(--text_color); /* Sets the text color of the links on hover */
+  font-weight: bold; /* Makes the text bold on hover */
+}
+
+#footer_info > a:visited {
+  /* Styles visited links */
+  background-color: white; /* Sets the background color of visited links */
+  color: purple; /* Sets the text color of visited links */
+  font-weight: bold; /* Makes the text bold for visited links */
+}
+
+.theme_colors {
+  /* Styles the container for theme color options */
+  display: inline-flex; /* Displays the theme color options inline */
+  flex-direction: column; /* Stacks the theme color options vertically */
+  text-align: center; /* Centers the text within the theme color options */
+  position: absolute; /* Positions the theme color options absolutely within the footer */
+  bottom: 0px; /* Positions the theme color options at the bottom of the footer */
+}
+
+.theme_colors > div {
+  /* Styles individual theme color options */
+  width: 50px; /* Sets the width of each theme color option */
+  padding: 4px; /* Adds padding around each theme color option */
+  font-size: 1rem; /* Sets the font size of the text within each theme color option */
+}
+
+.theme_colors > div:hover {
+  /* Styles theme color options on hover */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+  font-weight: bolder; /* Makes the text bold on hover */
+  border: 2px solid white; /* Adds a white border around the hovered theme color option */
+}
+
+.theme_colors > #active {
+  /* Styles the active theme color option */
+  border: 1px solid var(--text_color); /* Adds a border around the active theme color option */
+  padding: 4px; /* Adds padding around the active theme color option */
+}
+
+.theme_colors > #active:focus,
+.theme_colors > #active:hover {
+  /* Styles the active theme color option on focus or hover */
+  border: 2px solid var(--text_color); /* Adds a thicker border around the active theme color option */
+  font-weight: bolder; /* Makes the text bold for the active theme color option */
+}
