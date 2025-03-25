@@ -104,8 +104,6 @@ async def listen(loop_control, cam_track):
                         # If loop control indicates to stop, break out of the loop
                         if loop_control["stop"]:
                             break
-                        # Debug: Print the raw message received
-                        print(f"======================================= {message}")
                         # Process the incoming message
                         await on_message(ws, message, cam_track, loop_control)
                 # Handle unexpected connection closures gracefully
