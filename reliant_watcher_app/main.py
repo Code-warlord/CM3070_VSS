@@ -2,72 +2,32 @@ import cv2
 import numpy as np
 from multiprocessing import Process, shared_memory, Barrier, Manager, Event
 import time
+from datetime import datetime
 from pathlib import Path
-import asyncio
 from collections import Counter
+import json
 
 import capture_frame as CF
 import motion_detection as MD
-import video_streaming as VS
+import remote_monitoring as RM
 import object_detection as OD
 import motion_triggered_recording as MTR
-import database as db
+import database_manager as DBM
 import helper_functions as HF
-
-
-def save_to_database(db_path: Path, shared_dict: dict):
-    if shared_dict["OD_db_permission"] and shared_dict["MTR_db_permission"]:
-        if shared_dict['MTR_video_path_to_db'].exists() and shared_dict['MTR_video_path_to_db'].is_file():
-            db.insert_video_path_with_metadata(db_path, shared_dict['MTR_video_path_to_db'], 
-                                                shared_dict['OD_detected_obj_to_db'])
-        shared_dict["OD_db_permission"] = shared_dict["MTR_db_permission"] = False
-        shared_dict["OD_detected_obj_to_db"] = Counter()
-        shared_dict["MTR_video_path_to_db"] = Path()
-
-
-def send_email_whatsapp_notification(shared_dict):
-    if shared_dict["permission_to_send_alert"]:
-        msg = "Motion detected."
-        if not isinstance(shared_dict["OD_det_obj_info_for_alert"], Counter):
-            raise ValueError("Object info for alert is not a Counter object.")
-        objs_counter = shared_dict["OD_det_obj_info_for_alert"]
-        if not sum(objs_counter.values()) == 0:
-            keys = list(objs_counter.keys())
-            len_of_keys = len(keys)
-            if len_of_keys == 1:
-                msg+= f"\n{objs_counter[keys[0]]} {keys[0]} detected in the scene."
-            else:
-                for i in range(len_of_keys):
-                    if i == 0:
-                        msg+= f"\n{objs_counter[keys[i]]} {keys[i]}"
-                    elif i == len_of_keys - 1:
-                        msg+= f" and {objs_counter[keys[i]]} {keys[i]} detected in the scene."
-                    else:
-                        msg+= f", {objs_counter[keys[i]]} {keys[i]}"
-        print(f"Sending notification: {msg}")
-        shared_dict["permission_to_send_alert"] = False
-        shared_dict["OD_det_obj_info_for_alert"] = Counter()
-            
-
-def video_stream(shm_name, frame_shape, shared_dict):
-    print("live streaming started...")
-    cam_track = VS.SharedVideoStreamTrack(shm_name, frame_shape, fps=30)
-    asyncio.run(VS.listen(shared_dict, cam_track))
-
-
+import send_notification as SN
+    
 
 if __name__ == "__main__":
     db_path = Path(__file__).parent / "database" / "video_with_metadata.db"
     if db_path.exists():
         print("Database already exists.")
     else:
-        db.create_db(db_path)
+        DBM.create_db(db_path)
         print("Database created.")
 
-    video_path = Path(__file__).parent / "gsoc.mp4"
-    video_path = 0
+    camera_id = 0
     try:
-        cap = HF.assign_cap_base_on_os(video_path)
+        cap = HF.assign_cap_base_on_os(camera_id)
     except Exception as e:
         print(f"Error: {e}")
         exit()
@@ -107,9 +67,11 @@ if __name__ == "__main__":
         shared_dict["OD_detected_obj_to_db"] = Counter()
 
         shared_dict["MTR_db_permission"] = False
-        shared_dict["MTR_video_path_to_db"] = Path()
+        shared_dict["MTR_video_name_to_db"] = ""
+        shared_dict["time_stamp"] = datetime.now()
 
-        p1 = Process(target=CF.capture_frames_main, args=(video_path, shm_name, frame_shape, shared_dict, event_dict))
+
+        p1 = Process(target=CF.capture_frames_main, args=(camera_id, shm_name, frame_shape, shared_dict, event_dict))
         p1.start()
         
         event_dict["create_other_processes"].wait() # Wait until the process p1 signals it's ready
@@ -124,13 +86,22 @@ if __name__ == "__main__":
         p4 = Process(target=OD.object_detection_main, args=(shm_name, frame_shape, shared_dict, event_dict, barrier_dict))
         p4.start()
 
-        p5 = Process(target=video_stream, args=(shm_name, frame_shape, shared_dict,))
+        p5 = Process(target=RM.remote_monitoring_main, args=(shm_name, frame_shape, shared_dict,))
         p5.start()   
 
+        receiver_info = Path(__file__).parent / "auth" / "alert_receiver_info.json"
+        with open(receiver_info, "r") as f:
+            receiver = json.load(f)
+        phone = receiver["phone"]
+        email = receiver["email"]
         while not shared_dict["stop"]:
-            send_email_whatsapp_notification(shared_dict)
-            save_to_database(db_path, shared_dict)
+            try:
+                SN.send_notification_main(shared_dict, phone, email)
+            except Exception as e:
+                print(e)
+                shared_dict["permission_to_send_alert"] = False
 
+            DBM.save_to_database(db_path, shared_dict)
 
         p1.join()
         barrier_dict["MD_OD"].abort()
