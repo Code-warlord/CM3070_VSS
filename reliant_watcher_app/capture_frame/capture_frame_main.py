@@ -2,9 +2,7 @@
 import cv2
 import numpy as np
 from multiprocessing import shared_memory
-from pathlib import Path
 import logging
-
 import helper_functions as HF
 
 logging.basicConfig(

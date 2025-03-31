@@ -1,0 +1,7 @@
+Person 1st walk pass camera
+started at frame 69 (2.3 sec)
+ended at frame 361 (12.03 sec)
+duration  9.73 sec
+
+
+

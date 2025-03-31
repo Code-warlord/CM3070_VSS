@@ -347,25 +347,3 @@ def test_detect_motion_with_threshold_ok(motion_detector, video_capture, video_p
         assert math.isclose(expected_obs_duration, obs_duration, abs_tol=1), \
             f"Expected detection duration {expected_obs_duration}, got {obs_duration}"
 
-
-# if __name__=='__main__':
-#     video_path = Path(__file__).parent.parent.parent / "test_videos" / "test_video_1_day.mp4"
-#     cap = cv2.VideoCapture(video_path)
-#     if not cap.isOpened():
-#         print("Error: Cannot open video.")
-#         exit()
-
-#     motion_detector = MotionDetector()
-#     motion_detector.setup(cap.read()[1], size=350)
-#     motion_detector.initialize_model(cap.read()[1])
-
-#     while cap.isOpened():
-#         ret, frame = cap.read()
-#         if not ret:
-#             break
-
-#         motion_detector.detect_motion_with_threshold(frame, 2, visualize=True)
-#         if cv2.waitKey(1) & 0xFF == ord('q'):
-#             break
-#     cap.release()
-#     cv2.destroyAllWindows()

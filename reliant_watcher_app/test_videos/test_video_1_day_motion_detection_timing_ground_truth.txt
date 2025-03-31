@@ -1,0 +1,19 @@
+Light flicker 1
+started at frame 102 (3.4sec)
+ended at frame 131 (4:36sec)
+duration  0.96sec
+
+Light flicker2
+started at frame 141 (4.7 sec)
+ended at frame 166 (5.53 sec)
+duration  0.83 sec
+
+Person walk pass camera
+started at frame 208 (06:93 sec)
+ended at frame 415 (13.83 sec)
+duration  6.9 sec
+
+Light flicker 3
+started at frame 469 (15:63 sec)
+ended at frame 497 (16.56 sec)
+duration  0.93 sec
